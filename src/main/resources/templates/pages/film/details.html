@@ -31,13 +31,19 @@
 
         <div class="uk-margin">
             <label for="realisateur">Réalisateur</label>
-            <input class="uk-input" type="text" placeholder="Réalisateur" id="realisateur" name="realisateur" th:field="*{realisateur}">
+            <select name="genre" id="realisateur" th:field="*{realisateur}" class="uk-select">
+                <option th:each="participant : ${participants}"
+                        th:value="${participant.getId()}" th:text="${participant.getNom() + ' ' + participant.getPrenom()}"></option>
+            </select>
         </div>
 
-<!--        <div class="uk-margin">-->
-<!--            <label for="genre">Acteurs</label>-->
-<!--            <input class="uk-input" type="text" placeholder="Genre" id="genre" name="genre" th:field="*{genre}">-->
-<!--        </div>-->
+        <div class="uk-margin">
+            <label for="genre">Acteurs</label>
+            <select name="genre" id="acteurs" th:field="*{acteurs}" class="uk-select">
+                <option th:each="participant : ${participants}"
+                        th:value="${participant.getId()}" th:text="${participant.getNom() + ' ' + participant.getPrenom()}"></option>
+            </select>
+        </div>
 
         <div class="uk-margin">
             <label for="synopsis">Synopsis</label>

@@ -3,16 +3,13 @@ package fr.lezenn.tpspring.controllers;
 import fr.lezenn.tpspring.model.Film;
 import fr.lezenn.tpspring.services.CategorieServices;
 import fr.lezenn.tpspring.services.FilmServices;
+import fr.lezenn.tpspring.services.ParticipantServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.websocket.server.PathParam;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Contoller de gestion des films.
@@ -23,12 +20,15 @@ public class FilmController {
 
     private final FilmServices filmServices;
     private final CategorieServices categorieServices;
+    private final ParticipantServices participantServices;
 
     @Autowired
     public FilmController(FilmServices filmServices,
-                          CategorieServices categorieServices) {
+                          CategorieServices categorieServices,
+                          ParticipantServices participantServices) {
         this.filmServices = filmServices;
         this.categorieServices = categorieServices;
+        this.participantServices = participantServices;
     }
 
     @GetMapping("/{id}")
@@ -46,6 +46,7 @@ public class FilmController {
 
         model.addAttribute("film", film.get());
         model.addAttribute("categories", categorieServices.getAll());
+        model.addAttribute("participants", this.participantServices.getParticipants());
 
         return "pages/film/details";
     }
