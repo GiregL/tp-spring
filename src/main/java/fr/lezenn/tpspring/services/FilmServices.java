@@ -25,34 +25,10 @@ public interface FilmServices {
     Optional<Film> getFilmById(long id);
 
     /**
-     * Récupère la liste des catégories de films.
+     * Sauvegarde un film en base.
+     * @param film Film.
+     * @return True si succès, False sinon.
      */
-    List<CategorieFilm> getCategories();
-
-    /**
-     * Récupère une catégorie par son ID.
-     * @param id ID de la catégorie.
-     * @return Optional.of de la catégorie si trouvée, empty sinon.
-     */
-    Optional<CategorieFilm> getCategorieById(long id);
-
-    /**
-     * Récupère la liste des participants d'un film.
-     */
-    List<ParticipantFilm> getAllParticipants();
-
-    /**
-     * Récupère un participant par son ID.
-     * @param id ID de la catégorie.
-     * @return Optional.of du participant si trouvé, empty sinon.
-     */
-    Optional<ParticipantFilm> getParticipantById(long id);
-
-    /**
-     * Sauvegarde un film sur l'application.
-     * @param film Film à sauvegarder.
-     * @return True si succès, false sinon.
-     */
-    boolean saveFilm(Film film);
+    boolean sauvegarder(Film film);
 
 }

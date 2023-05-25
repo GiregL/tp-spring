@@ -17,6 +17,7 @@
                     <p><span class="uk-badge" th:text="${'Durée : ' + film.getDuree() + ' min'}"></span></p>
                 </div>
                 <p th:text="${film.getSynopsis()}"></p>
+                <a th:href="@{'/film/' + ${film.getId()}}" class="uk-button uk-button-primary">Détails</a>
             </div>
         </div>
     </div>

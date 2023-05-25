@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/root}">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+</head>
+<body layout:fragment="content">
+
+<h1 th:text="${film.getNom()}"></h1>
+
+    <form th:action="@{'/film/' + ${film.getId()}}" th:object="${film}" method="post">
+        <div class="uk-margin">
+            <label for="genre">Genre</label>
+            <select name="genre" id="genre" th:field="*{genre}" class="uk-select">
+                <option th:each="categorie : ${categories}"
+                        th:value="${categorie.getId()}" th:text="${categorie.getNom()}"></option>
+            </select>
+        </div>
+
+        <div class="uk-margin">
+            <label for="annee">Année de parution</label>
+            <input class="uk-input" type="text" placeholder="Année de parution" id="annee" name="annee" th:field="*{dateParution}">
+        </div>
+
+        <div class="uk-margin">
+            <label for="titre">Titre</label>
+            <input class="uk-input" type="text" placeholder="Titre" id="titre" name="titre" th:field="*{nom}">
+        </div>
+
+        <div class="uk-margin">
+            <label for="realisateur">Réalisateur</label>
+            <input class="uk-input" type="text" placeholder="Réalisateur" id="realisateur" name="realisateur" th:field="*{realisateur}">
+        </div>
+
+<!--        <div class="uk-margin">-->
+<!--            <label for="genre">Acteurs</label>-->
+<!--            <input class="uk-input" type="text" placeholder="Genre" id="genre" name="genre" th:field="*{genre}">-->
+<!--        </div>-->
+
+        <div class="uk-margin">
+            <label for="synopsis">Synopsis</label>
+            <textarea class="uk-input" th:field="*{synopsis}" id="synopsis" name="synopsis">
+            </textarea>
+        </div>
+
+        <button type="submit" class="uk-button uk-button-primary">Enregistrer</button>
+        <a th:href="@{/}" class="uk-button uk-button-default">Annuler</a>
+    </form>
+
+</body>
+</html>
