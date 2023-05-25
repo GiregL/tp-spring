@@ -1,9 +1,9 @@
 package fr.lezenn.tpspring.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+import lombok.*;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -12,12 +12,21 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "categories", uniqueConstraints = @UniqueConstraint(columnNames = {"nom"}))
 public class CategorieFilm {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+
+    @Column(name = "nom")
+    @NotNull
     private String nom;
 
     @Builder.Default
+    @OneToMany(mappedBy = "genre")
     private List<Film> films = List.of();
 
     public CategorieFilm(long id, String nom) {
