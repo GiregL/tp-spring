@@ -1,6 +1,6 @@
 package fr.lezenn.tpspring.controllers;
 
-import fr.lezenn.tpspring.model.Film;
+import fr.lezenn.tpspring.entites.Film;
 import fr.lezenn.tpspring.services.CategorieServices;
 import fr.lezenn.tpspring.services.FilmServices;
 import fr.lezenn.tpspring.services.ParticipantServices;
@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
  */
 @Controller
 @RequestMapping("/film")
+@SessionAttributes({"utilisateur"})
 public class FilmController {
 
     private final FilmServices filmServices;

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/root}">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+</head>
+<body layout:fragment="content">
+
+    <h1>Connexion</h1>
+
+    <form th:action="@{/auth/connexion}" method="post" th:object="${modelFormConnexion}" class="uk-width-1-1@s uk-width-1-2">
+        <label for="email">Adresse e-mail</label>
+        <input type="email" name="email" id="email" class="uk-input uk-margin-bottom" th:field="*{email}">
+
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" class="uk-input uk-margin-bottom" th:field="*{motDePasse}">
+
+        <button type="submit" class="uk-button uk-button-primary">Se connecter</button>
+    </form>
+
+</body>
+</html>

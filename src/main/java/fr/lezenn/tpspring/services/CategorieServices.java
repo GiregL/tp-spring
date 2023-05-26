@@ -1,6 +1,6 @@
 package fr.lezenn.tpspring.services;
 
-import fr.lezenn.tpspring.model.CategorieFilm;
+import fr.lezenn.tpspring.entites.CategorieFilm;
 
 import java.util.List;
 import java.util.Optional;

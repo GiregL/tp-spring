@@ -1,7 +1,7 @@
 package fr.lezenn.tpspring.services;
 
-import fr.lezenn.tpspring.model.Film;
-import fr.lezenn.tpspring.model.ParticipantFilm;
+import fr.lezenn.tpspring.entites.Film;
+import fr.lezenn.tpspring.entites.ParticipantFilm;
 import fr.lezenn.tpspring.repositories.FilmRepository;
 import fr.lezenn.tpspring.repositories.ParticipantRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package fr.lezenn.tpspring.repositories;
 
-import fr.lezenn.tpspring.model.Avis;
+import fr.lezenn.tpspring.entites.Avis;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -1,7 +1,7 @@
 package fr.lezenn.tpspring.services;
 
-import fr.lezenn.tpspring.model.Film;
-import fr.lezenn.tpspring.model.ParticipantFilm;
+import fr.lezenn.tpspring.entites.Film;
+import fr.lezenn.tpspring.entites.ParticipantFilm;
 
 import java.util.List;
 import java.util.Optional;

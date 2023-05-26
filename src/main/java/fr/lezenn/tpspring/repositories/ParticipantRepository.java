@@ -1,7 +1,7 @@
 package fr.lezenn.tpspring.repositories;
 
-import fr.lezenn.tpspring.model.Film;
-import fr.lezenn.tpspring.model.ParticipantFilm;
+import fr.lezenn.tpspring.entites.Film;
+import fr.lezenn.tpspring.entites.ParticipantFilm;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

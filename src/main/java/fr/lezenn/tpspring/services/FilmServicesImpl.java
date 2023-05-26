@@ -1,8 +1,6 @@
 package fr.lezenn.tpspring.services;
 
-import fr.lezenn.tpspring.model.CategorieFilm;
-import fr.lezenn.tpspring.model.Film;
-import fr.lezenn.tpspring.model.ParticipantFilm;
+import fr.lezenn.tpspring.entites.Film;
 import fr.lezenn.tpspring.repositories.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

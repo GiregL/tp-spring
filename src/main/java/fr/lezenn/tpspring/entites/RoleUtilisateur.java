@@ -1,4 +1,4 @@
-package fr.lezenn.tpspring.model;
+package fr.lezenn.tpspring.entites;
 
 /**
  * Rôles possibles pour un utilisateur.

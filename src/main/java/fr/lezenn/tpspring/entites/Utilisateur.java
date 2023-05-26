@@ -1,4 +1,4 @@
-package fr.lezenn.tpspring.model;
+package fr.lezenn.tpspring.entites;
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.AllArgsConstructor;

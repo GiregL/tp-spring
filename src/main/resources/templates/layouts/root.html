@@ -18,17 +18,32 @@
             <div uk-navbar>
                 <div class="uk-navbar-left">
                     <ul class="uk-navbar-nav">
-                        <li class="uk-active"><a href="#">Filmothèque</a></li>
+                        <li class="uk-active"><a th:href="@{/}">Filmothèque</a></li>
                     </ul>
                 </div>
                 <div class="uk-navbar-right">
                     <ul class="uk-navbar-nav">
-                        <li><a href="#">Connexion</a></li>
+                        <th:block th:if="${@authService.isIdentifie()}"
+                            th:with="user=${@authService.getUtilisateurConnecte().get()}">
+                            <li th:text="${user.getNomUtilisateur()}"></li>
+                        </th:block>
+
+
+                        <th:block th:if="${@authService.isIdentifie()}">
+                            <li><a th:href="@{/auth/deconnexion}">Deconnexion</a></li>
+                        </th:block>
+                        <th:block th:unless="${@authService.isIdentifie()}">
+                            <li><a th:href="@{/auth/deconnexion}">Connexion</a></li>
+                        </th:block>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
+
+<!--    <div class="uk-container uk-margin-top uk-margin-bottom">-->
+
+<!--    </div>-->
 
     <div class="uk-container uk-padding uk-padding-remove-horizontal uk-padding-remove-bottom">
         <div layout:fragment="content"></div>

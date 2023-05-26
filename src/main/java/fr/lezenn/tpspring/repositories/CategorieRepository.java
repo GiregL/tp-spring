@@ -1,6 +1,6 @@
 package fr.lezenn.tpspring.repositories;
 
-import fr.lezenn.tpspring.model.CategorieFilm;
+import fr.lezenn.tpspring.entites.CategorieFilm;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
