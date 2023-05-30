@@ -56,10 +56,4 @@ public class AuthentificationServicesImpl implements AuthentificationServices {
 
         return result;
     }
-
-    @Override
-    public void deconnexion() {
-        log.debug("Deconnexion de l'utilisateur.");
-        this.sessionUtilisateur.removeAttribute("utilisateur");
-    }
 }

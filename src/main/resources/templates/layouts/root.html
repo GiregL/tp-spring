@@ -23,17 +23,16 @@
                 </div>
                 <div class="uk-navbar-right">
                     <ul class="uk-navbar-nav">
-                        <th:block th:if="${@authService.isIdentifie()}"
-                            th:with="user=${@authService.getUtilisateurConnecte().get()}">
-                            <li th:text="${user.getNomUtilisateur()}"></li>
+                        <th:block th:if="${session.utilisateur != null}">
+                            <li><a href="#" th:text="${session.utilisateur.get().getNomUtilisateur()}"></a></li>
                         </th:block>
 
 
-                        <th:block th:if="${@authService.isIdentifie()}">
+                        <th:block th:if="${session.utilisateur != null}">
                             <li><a th:href="@{/auth/deconnexion}">Deconnexion</a></li>
                         </th:block>
-                        <th:block th:unless="${@authService.isIdentifie()}">
-                            <li><a th:href="@{/auth/deconnexion}">Connexion</a></li>
+                        <th:block th:unless="${session.utilisateur != null}">
+                            <li><a th:href="@{/auth/connexion}">Connexion</a></li>
                         </th:block>
                     </ul>
                 </div>
@@ -41,9 +40,17 @@
         </div>
     </nav>
 
-<!--    <div class="uk-container uk-margin-top uk-margin-bottom">-->
+    <th:block th:if="${error != null}">
+        <div class="uk-container uk-margin-top uk-margin-bottom uk-alert-success" uk-alert>
+            <p th:text="${success}"></p>
+        </div>
+    </th:block>
 
-<!--    </div>-->
+    <th:block th:if="${success != null}">
+        <div class="uk-container uk-margin-top uk-margin-bottom uk-alert-danger" uk-alert>
+            <p th:text="${success}"></p>
+        </div>
+    </th:block>
 
     <div class="uk-container uk-padding uk-padding-remove-horizontal uk-padding-remove-bottom">
         <div layout:fragment="content"></div>

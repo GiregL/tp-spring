@@ -28,9 +28,4 @@ public interface AuthentificationServices {
      */
     Optional<Utilisateur> authentifier(String email, String motDePasse);
 
-    /**
-     * Deconnecte l'utilisateur.
-     */
-    void deconnexion();
-
 }
