@@ -17,6 +17,16 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "participants")
+@NamedQueries({
+        @NamedQuery(
+                name = "getRealisateurFilm",
+                query = "SELECT p FROM ParticipantFilm p, Film f WHERE f.realisateur.id = p.id AND f.id = ?1"
+        ),
+        @NamedQuery(
+                name = "getActeursFilm",
+                query = "SELECT p FROM ParticipantFilm p, Film f WHERE f.realisateur.id <> p.id AND f.id = ?1"
+        )
+})
 public class ParticipantFilm {
 
     @Id

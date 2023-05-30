@@ -47,7 +47,8 @@ public class FilmController {
 
         model.addAttribute("film", film.get());
         model.addAttribute("categories", categorieServices.getAll());
-        model.addAttribute("participants", this.participantServices.getParticipants());
+        model.addAttribute("realisateur", this.participantServices.getRealisateurFilm(film.get()));
+        model.addAttribute("acteurs", this.participantServices.getActeursFilm(film.get()));
 
         return "pages/film/details";
     }

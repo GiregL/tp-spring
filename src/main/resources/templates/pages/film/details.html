@@ -31,15 +31,15 @@
 
         <div class="uk-margin">
             <label for="realisateur">Réalisateur</label>
-            <select name="genre" id="realisateur" th:field="*{realisateur}" class="uk-select">
+            <select name="realisateur" id="realisateur" th:field="*{realisateur}" class="uk-select">
                 <option th:each="participant : ${participants}"
                         th:value="${participant.getId()}" th:text="${participant.getNom() + ' ' + participant.getPrenom()}"></option>
             </select>
         </div>
 
         <div class="uk-margin">
-            <label for="genre">Acteurs</label>
-            <select name="genre" id="acteurs" th:field="*{acteurs}" class="uk-select">
+            <label for="acteurs">Acteurs</label>
+            <select name="acteurs" id="acteurs" th:field="*{acteurs}" class="uk-select" multiple>
                 <option th:each="participant : ${participants}"
                         th:value="${participant.getId()}" th:text="${participant.getNom() + ' ' + participant.getPrenom()}"></option>
             </select>

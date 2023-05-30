@@ -23,7 +23,7 @@ public class AuthentificationConfig {
     public FilterRegistrationBean<FiltreAuthentification> filtreAuthentificationConfig() {
         FilterRegistrationBean<FiltreAuthentification> result = new FilterRegistrationBean<>();
         result.setFilter(filtreAuthentification);
-        result.addUrlPatterns("/", "/film/*", "/categories/*");
+        result.addUrlPatterns("/film/*", "/categories/*");
         return result;
     }
 
