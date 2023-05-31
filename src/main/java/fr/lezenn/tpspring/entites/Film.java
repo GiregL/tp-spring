@@ -20,7 +20,7 @@ import java.util.List;
 public class Film {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "nom")
@@ -41,7 +41,7 @@ public class Film {
 
     @ManyToOne
     @JoinColumn(name = "realisateur", nullable = false)
-    private ParticipantFilm realisateur;
+    private Realisateur realisateur;
 
     @Builder.Default
     @ManyToMany
@@ -50,7 +50,7 @@ public class Film {
             joinColumns = @JoinColumn(name = "id_film"),
             inverseJoinColumns = @JoinColumn(name = "id_acteur")
     )
-    private List<ParticipantFilm> acteurs = List.of();
+    private List<Acteur> acteurs = List.of();
 
     @Builder.Default
     @OneToMany(mappedBy = "film")

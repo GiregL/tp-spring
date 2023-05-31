@@ -22,7 +22,7 @@ import java.util.List;
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "nom_utilisateur")

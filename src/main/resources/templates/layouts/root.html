@@ -24,6 +24,7 @@
                 <div class="uk-navbar-right">
                     <ul class="uk-navbar-nav">
                         <th:block th:if="${session.utilisateur != null}">
+                            <li><a th:href="@{/film/ajouter}">Ajouter un film</a></li>
                             <li><a href="#" th:text="${session.utilisateur.get().getNomUtilisateur()}"></a></li>
                         </th:block>
 

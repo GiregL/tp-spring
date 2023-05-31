@@ -16,21 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "participants")
-@NamedQueries({
-        @NamedQuery(
-                name = "getRealisateurFilm",
-                query = "SELECT p FROM ParticipantFilm p, Film f WHERE f.realisateur.id = p.id AND f.id = ?1"
-        ),
-        @NamedQuery(
-                name = "getActeursFilm",
-                query = "SELECT p FROM ParticipantFilm p, Film f WHERE f.realisateur.id <> p.id AND f.id = ?1"
-        )
-})
-public class ParticipantFilm {
+@Table(name = "acteurs")
+public class Acteur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "prenom")
@@ -40,14 +30,10 @@ public class ParticipantFilm {
     private String nom;
 
     @Builder.Default
-    @OneToMany(mappedBy = "realisateur")
-    private List<Film> filmRealise = List.of();
-
-    @Builder.Default
     @ManyToMany(mappedBy = "acteurs")
     private List<Film> filmJoues = List.of();
 
-    public ParticipantFilm(long id, String prenom, String nom) {
+    public Acteur(long id, String prenom, String nom) {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
