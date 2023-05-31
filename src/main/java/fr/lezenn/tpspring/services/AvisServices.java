@@ -9,6 +9,6 @@ import fr.lezenn.tpspring.entites.Utilisateur;
  */
 public interface AvisServices {
 
-    boolean ajouterAvisFilm(Film film, Avis avis, Utilisateur utilisateur);
+    boolean ajouterAvisFilm(Avis avis);
 
 }

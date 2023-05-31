@@ -55,5 +55,36 @@
         <a th:href="@{/}" class="uk-button uk-button-default">Annuler</a>
     </form>
 
+    <h3>Commentaires</h3>
+
+    <div class="uk-card uk-card-default uk-padding-small uk-margin-bottom">
+        <div class="uk-card-title">
+            Ajouter un commentaire
+        </div>
+        <div class="uk-card-body">
+            <form th:action="@{/film/avis/new}" th:object="${avis}" method="post">
+                <input type="hidden" id="film" name="film" th:value="${film.getId()}">
+
+                <label for="note">Note</label>
+                <input type="range" id="note" name="note" th:field="*{note}" min="0" max="5" class="uk-range">
+
+                <label for="commentaire">Commentaire</label>
+                <textarea id="commentaire" name="commentaire" th:field="*{commentaire}" class="uk-input uk-margin-bottom"></textarea>
+
+                <button type="submit" class="uk-button uk-button-primary">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="uk-card uk-card-default uk-padding-small uk-margin-bottom" th:each="avis : ${film.getAvis()}">
+        <div class="uk-card-title">
+            <span th:text="${avis.getUtilisateur().getNomUtilisateur()}"></span>
+            <span th:each="i : ${#numbers.sequence(0, avis.getNote())}" uk-icon="star"></span>
+        </div>
+        <div class="uk-card-body" th:text="${avis.getCommentaire()}">
+        </div>
+    </div>
+
 </body>
 </html>

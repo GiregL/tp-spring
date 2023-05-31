@@ -1,24 +1,29 @@
 package fr.lezenn.tpspring.controllers;
 
+import fr.lezenn.tpspring.controllers.forms.AjouterAvisFilmForm;
 import fr.lezenn.tpspring.controllers.forms.AjouterFilmForm;
+import fr.lezenn.tpspring.entites.Avis;
 import fr.lezenn.tpspring.entites.Film;
-import fr.lezenn.tpspring.services.CategorieServices;
-import fr.lezenn.tpspring.services.FilmServices;
-import fr.lezenn.tpspring.services.ActeurServices;
-import fr.lezenn.tpspring.services.RealisateurServices;
+import fr.lezenn.tpspring.entites.Utilisateur;
+import fr.lezenn.tpspring.services.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Optional;
 
 /**
  * Contoller de gestion des films.
  */
+@Slf4j
 @Controller
 @RequestMapping("/film")
 @SessionAttributes({"utilisateur"})
@@ -28,18 +33,22 @@ public class FilmController {
     private final CategorieServices categorieServices;
     private final ActeurServices acteurServices;
     private final RealisateurServices realisateurServices;
+    private final AvisServices avisServices;
 
     @Autowired
     public FilmController(FilmServices filmServices,
                           CategorieServices categorieServices,
                           ActeurServices acteurServices,
-                          RealisateurServices realisateurServices) {
+                          RealisateurServices realisateurServices,
+                          AvisServices avisServices) {
         this.filmServices = filmServices;
         this.categorieServices = categorieServices;
         this.acteurServices = acteurServices;
         this.realisateurServices = realisateurServices;
+        this.avisServices = avisServices;
     }
 
+    @Transactional
     @GetMapping("/{id}")
     public String detailsFilm(@PathVariable Integer id, Model model) {
         if (id == null) {
@@ -57,6 +66,8 @@ public class FilmController {
         model.addAttribute("categories", categorieServices.getAll());
         model.addAttribute("realisateur", film.get().getRealisateur());
         model.addAttribute("acteurs", film.get().getActeurs());
+
+        model.addAttribute("avis", new AjouterAvisFilmForm());
 
         return "pages/film/details";
     }
@@ -113,4 +124,25 @@ public class FilmController {
         }
     }
 
+    @PostMapping("/avis/new")
+    public String ajouterAvisFilm(@ModelAttribute("avis") @Valid AjouterAvisFilmForm avisForm,
+                                  BindingResult bindingResult,
+                                  HttpSession session) {
+        if (bindingResult.hasErrors()) {
+            log.error(bindingResult.getAllErrors().toString());
+            return "redirect:/";
+        }
+
+        Utilisateur utilisateur = ((Optional<Utilisateur>) session.getAttribute("utilisateur")).get();
+
+        Avis avis = Avis.builder()
+                .film(avisForm.getFilm())
+                .commentaire(avisForm.getCommentaire())
+                .note(avisForm.getNote())
+                .utilisateur(utilisateur)
+                .build();
+
+        this.avisServices.ajouterAvisFilm(avis);
+        return "redirect:/film/" + avisForm.getFilm().getId();
+    }
 }

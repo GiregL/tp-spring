@@ -36,15 +36,15 @@ public class Utilisateur {
     @NotNull
     private String motDePasse;
 
-    @Builder.Default
-    @Enumerated(EnumType.ORDINAL)
-    @ElementCollection(targetClass = RoleUtilisateur.class)
-    @CollectionTable(
-            name = "roles_utilisateurs",
-            joinColumns = @JoinColumn(name = "id")
-    )
-    @Column(name = "role")
-    private List<RoleUtilisateur> roles = List.of(RoleUtilisateur.VISITEUR);
+//    @Builder.Default
+//    @Enumerated(EnumType.ORDINAL)
+//    @ElementCollection(targetClass = RoleUtilisateur.class)
+//    @CollectionTable(
+//            name = "roles_utilisateurs",
+//            joinColumns = @JoinColumn(name = "id")
+//    )
+//    @Column(name = "role")
+//    private List<RoleUtilisateur> roles = List.of(RoleUtilisateur.VISITEUR);
 
     @Builder.Default
     @OneToMany
